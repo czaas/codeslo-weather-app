@@ -17,65 +17,8 @@
 		unit: 'F'
 	};
 
+	// Let's start up!
 	init();
-
-	function init() {
-		// gets initial zip code and updates app state and UI
-		$.get('http://ip-api.com/json')
-			.done(function(response) {
-				APP_STATE.zip = response.zip;
-				APP_STATE.location = response.location;
-				APP_STATE.country = response.countryCode;
-
-				// then get weather
-				getWeather();
-			});
-	}
-
-	function getWeather() {
-		$.get(url + '&zip=' + APP_STATE.zip + ',' + APP_STATE.country)
-			.done(function(response) {
-				APP_STATE.detailsOfSky = response.weather[0].description;
-				APP_STATE.weatherIcon = 'http://openweathermap.org/img/w/' + response.weather[0].icon + '.png';
-				APP_STATE.tempK = response.main.temp;
-				APP_STATE.location = response.name;
-
-				updateUI();
-			});
-	}
-
-	function updateUI() {
-		
-		$('#weather-degrees').html(determinUnit(APP_STATE.tempK) + '&deg;');
-		$('#weather-unit').text(APP_STATE.unit);
-		$('#location').text(APP_STATE.location + ',');
-		$('#weather-details').text(APP_STATE.detailsOfSky);
-		$('#weather-icon').html('<img src=' + APP_STATE.weatherIcon + ' />' );
-	}
-
-	function determinUnit(temp) {
-		
-		switch(APP_STATE.unit) {
-			case 'F':
-				return KelvinToFahrenheit(temp);
-				break;
-			case 'C':
-				return KelvinToCelsius(temp);
-				break;
-			default:
-				return KelvinToFahrenheit(temp);
-		}
-	}
-
-	// Conversions
-	function KelvinToCelsius(tempCelsius) {
-		return Math.round(tempCelsius - 273.15);
-	}
-
-	function KelvinToFahrenheit(tempKelvin) {
-		return Math.round(tempKelvin * 9/5 - 459.67);
-	}
-
 
 	// listeners
 	$('#zip-code-entry').submit(function(e){
@@ -101,7 +44,67 @@
 		updateUI();
 	});
 
+	// Initial get request to get the 
+	// - get the current zip code
+	// - then updates the app state
+	// - then get the weather
+	function init() {
+		// gets initial zip code and updates app state and UI
+		$.get('http://ip-api.com/json')
+			.done(function(response) {
+				APP_STATE.zip = response.zip;
+				APP_STATE.location = response.location;
+				APP_STATE.country = response.countryCode;
 
+				// then get weather
+				getWeather();
+			});
+	}
 
+	// Gets the weather based on the applications zip code state
+	// gets weather based on zip
+	// then updates app state
+	// then updates the UI
+	function getWeather() {
+		$.get(url + '&zip=' + APP_STATE.zip + ',' + APP_STATE.country)
+			.done(function(response) {
+				APP_STATE.detailsOfSky = response.weather[0].description;
+				APP_STATE.weatherIcon = 'http://openweathermap.org/img/w/' + response.weather[0].icon + '.png';
+				APP_STATE.tempK = response.main.temp;
+				APP_STATE.location = response.name;
 
+				updateUI();
+			});
+	}
+
+	function updateUI() {
+		$('#weather-degrees').html(determineUnit(APP_STATE.tempK) + '&deg;');
+		$('#weather-unit').text(APP_STATE.unit);
+		$('#location').text(APP_STATE.location + ',');
+		$('#weather-details').text(APP_STATE.detailsOfSky);
+		$('#weather-icon').html('<img src=' + APP_STATE.weatherIcon + ' />' );
+	}
+
+	function determineUnit(temp) {
+		
+		switch(APP_STATE.unit) {
+			case 'F':
+				return KelvinToFahrenheit(temp);
+				break;
+			case 'C':
+				return KelvinToCelsius(temp);
+				break;
+			default:
+				return KelvinToFahrenheit(temp);
+		}
+	}
+
+	// Conversions
+	function KelvinToCelsius(tempCelsius) {
+		return Math.round(tempCelsius - 273.15);
+	}
+
+	function KelvinToFahrenheit(tempKelvin) {
+		return Math.round(tempKelvin * 9/5 - 459.67);
+	}
 }(jQuery));
