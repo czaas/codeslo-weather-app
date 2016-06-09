@@ -10,7 +10,7 @@
 	var APP_STATE = {
 		zip: '',
 		country: '',
-		city: '',
+		location: '',
 		tempK: 0,
 		detailsOfSky: '',
 		weatherIcon: '',
@@ -24,7 +24,7 @@
 		$.get('http://ip-api.com/json')
 			.done(function(response) {
 				APP_STATE.zip = response.zip;
-				APP_STATE.city = response.city;
+				APP_STATE.location = response.location;
 				APP_STATE.country = response.countryCode;
 
 				// then get weather
@@ -38,23 +38,19 @@
 				APP_STATE.detailsOfSky = response.weather[0].description;
 				APP_STATE.weatherIcon = response.weather[0].icon;
 				APP_STATE.tempK = response.main.temp;
+				APP_STATE.location = response.name;
 
 				updateUI();
 			});
 	}
 
 	function updateUI() {
-		var $degrees = $('#weather-degrees');
-		var $unit = $('#weather-unit');
-		var $details = $('#weather-details');
 		
-		// apply weather to view
-		$degrees.attr('data-kelvin', APP_STATE.tempK);
-		$degrees.html(determinUnit(APP_STATE.tempK) + '&deg;');
-		$unit.text(APP_STATE.unit);
+		$('#weather-degrees').html(determinUnit(APP_STATE.tempK) + '&deg;');
+		$('#weather-unit').text(APP_STATE.unit);
 
-		// apply details
-		$details.text(APP_STATE.detailsOfSky);
+		$('#location').text(APP_STATE.location + ',');
+		$('#weather-details').text(APP_STATE.detailsOfSky);
 	}
 
 	function determinUnit(temp) {
@@ -95,7 +91,7 @@
 
 	$('#weather-unit').on('click', function(e){
 		e.preventDefault();
-		
+
 		if ($(this).text() === 'F'){
 			APP_STATE.unit = 'C';
 		} else {
