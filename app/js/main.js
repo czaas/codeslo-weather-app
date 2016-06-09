@@ -82,8 +82,7 @@
 
 
 	// listeners
-	var $form = $('#zip-code-entry');
-	$form.submit(function(e){
+	$('#zip-code-entry').submit(function(e){
 		e.preventDefault();
 		// Should be doing some validation ... 
 		var $newZip = $('#new-zip');
@@ -93,6 +92,19 @@
 
 		$newZip.val('');
 	});
+
+	$('#weather-unit').on('click', function(e){
+		e.preventDefault();
+		
+		if ($(this).text() === 'F'){
+			APP_STATE.unit = 'C';
+		} else {
+			APP_STATE.unit = 'F';
+		}
+
+		updateUI();
+	});
+
 
 
 
