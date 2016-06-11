@@ -69,7 +69,7 @@
 		$.get(url + '&zip=' + APP_STATE.zip + ',' + APP_STATE.country)
 			.done(function(response) {
 				APP_STATE.detailsOfSky = response.weather[0].description;
-				APP_STATE.weatherIcon = 'http://openweathermap.org/img/w/' + response.weather[0].icon + '.png';
+				APP_STATE.weatherIcon = response.weather[0].id;
 				APP_STATE.tempK = response.main.temp;
 				APP_STATE.location = response.name;
 
@@ -82,7 +82,7 @@
 		$('#weather-unit').text(APP_STATE.unit);
 		$('#location').text(APP_STATE.location + ',');
 		$('#weather-details').text(APP_STATE.detailsOfSky);
-		$('#weather-icon').html('<img src=' + APP_STATE.weatherIcon + ' />' );
+		$('#weather-icon').html('<i class="wi wi-owm-' + APP_STATE.weatherIcon + '"></i>' );
 	}
 
 	function determineUnit(temp) {
