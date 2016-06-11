@@ -7,10 +7,50 @@
 
 body {
 	text-align: center;
+	background: #303D74;
+	color: #B7C3F2;
+	padding: 0 20px;
+}
 
-	color: #222;
+.content-container {
+	// padding-top: 35%;
+	max-width: 350px;
+	margin: 0 auto;
 }
 
 a, a:link, a:visited {
-	color: #008375;
+	color: #220660;
+}
+
+.zip-form__input {
+	display: block;
+	max-width: 320px;
+	border: none;
+	padding: 8px 12px;
+	margin: 0 auto 25px;
+	transition: .25s ease-in;
+}
+.zip-form__input:focus {
+	outline: none;
+	box-shadow: 0 3px 8px rgba(0, 0, 0, .6);
+}
+
+.zip-form__button {
+	display: block;
+	max-width: 350px;
+	margin: 0 auto;
+	border: none; 
+	background: #265B6A;
+	color: #fff;
+	padding: 8px 12px;
+	transition: .25s ease-out;
+}
+
+.zip-form__button:hover {
+	background: #024457;
+	cursor: pointer;
+}
+
+.zip-form__button:focus {
+	outline: none;
 }

@@ -10,4 +10,4 @@ Based off the instructions on <a href="https://www.freecodecamp.com/challenges/s
 
 ## To do
 - look into better weather icons: https://github.com/erikflowers/weather-icons
-- style the app
+- ~~style the app~~
