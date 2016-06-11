@@ -9,5 +9,5 @@ Based off the instructions on <a href="https://www.freecodecamp.com/challenges/s
 3. Then it updates the UI based on multiple app variables as seen in the `APP_STATE` object
 
 ## To do
-- look into better weather icons: https://github.com/erikflowers/weather-icons
+- ~~look into better weather icons: https://github.com/erikflowers/weather-icons~~
 - ~~style the app~~

@@ -54,3 +54,8 @@ a, a:link, a:visited {
 .zip-form__button:focus {
 	outline: none;
 }
+
+
+.details {
+	margin-right: 50px
+}
