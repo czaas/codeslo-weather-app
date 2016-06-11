@@ -80,7 +80,7 @@
 	function updateUI() {
 		$('#weather-degrees').html(determineUnit(APP_STATE.tempK) + '&deg;');
 		$('#weather-unit').text(APP_STATE.unit);
-		$('#location').text(APP_STATE.location + ',');
+		$('#location').text(APP_STATE.location);
 		$('#weather-details').text(APP_STATE.detailsOfSky);
 		$('#weather-icon').html('<i class="wi wi-owm-' + APP_STATE.weatherIcon + '"></i>' );
 	}
