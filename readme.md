@@ -1,5 +1,7 @@
 # My weather app
 
+<a href="http://czaas.github.io/codeslo-weather-app/" target="_blank">Here it is!</a>
+
 Based off the instructions on <a href="https://www.freecodecamp.com/challenges/show-the-local-weather" target="_blank">free code camp</a>
 
 ## How it works
