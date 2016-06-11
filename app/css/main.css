@@ -1,0 +1,16 @@
+* {
+	box-sizing: border-box;
+	*:before, *:after {
+		box-sizing: inherit;
+	}
+}
+
+body {
+	text-align: center;
+
+	color: #222;
+}
+
+a, a:link, a:visited {
+	color: #008375;
+}
